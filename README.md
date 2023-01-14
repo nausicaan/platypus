@@ -1,6 +1,6 @@
-# WordPress - Plugin Updates - Checker
+# WordPress Checker
 
-Runs the standard `wp plugin list --update=available` command as well as some custom searches to grab those hard to find updates.
+Runs the standard `wp plugin list --update=available` command as well as some custom searches to grab those hard to find plugin updates.
 
 ```console
 Below is the current list of plugins requiring updates for test.blog.gov.bc.ca.
@@ -22,13 +22,13 @@ Googles' [Go language](https://go.dev) installed to enable building executables 
 
 From the root folder containing *main.go*, use the command that matches your environment:
 
-Mac:
+### Mac:
 
 ```bash
 go build -o <build_location>/<program_name> main.go
 ```
 
-Linux:
+### Linux:
 
 ```bash
 GOOS=linux GOARCH=amd64 go build -o <build_location>/<program_name> main.go
@@ -43,8 +43,8 @@ GOOS=linux GOARCH=amd64 go build -o <build_location>/<program_name> main.go
 Example:
 
 ```bash
-./wp-check coeurl.dmz /data/www-app/test_blog_gov_bc_ca/current/web/wp test.blog.gov.bc.ca
+./wp-checker coeurl.dmz /data/www-app/test_blog_gov_bc_ca/current/web/wp test.blog.gov.bc.ca
 ```
 
 ## License
-Code is under Version 3.0 of the [GNU](https://github.com/nausicaan/checker/blob/main/LICENSE.md) General Public License.
+Code is distributed under [The Unlicense](https://github.com/nausicaan/free/blob/main/LICENSE.md) and is part of the Public Domain.

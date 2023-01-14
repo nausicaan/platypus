@@ -1,10 +1,10 @@
 package main
 
 import (
-	W "check/workers"
+	w "github.com/nausicaan/wp-checker/workers"
 )
 
 // Launch the program and execute according to the supplied flag
 func main() {
-	W.Plugin()
+	w.Plugin()
 }

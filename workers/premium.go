@@ -35,17 +35,17 @@ func current(p string) string {
 	where := strings.TrimSuffix(path, "web/wp") + "composer.json"
 	who := user + "@" + server
 	what := concat("ssh", "-T", who, " cat "+where)
-	trouble(os.WriteFile(tmp, what, 0666))
-	grep := rtnByte(exec.Command("grep", p, tmp))
+	errors(os.WriteFile(tmp, what, 0666))
+	grep := returnByte(exec.Command("grep", p, tmp))
 	return regmatch(strings.TrimSpace(string(grep)))
 }
 
 // Find the latest versions of our premium plugins from the applicable websites
 func latest(u, g string) string {
-	rtnByte(exec.Command("curl", "-s", u, "-o", web))
-	grep := rtnByte(exec.Command("grep", g, web))
-	trouble(os.WriteFile(grp, grep, 0666))
-	head := rtnByte(exec.Command("head", "-n 1", grp))
+	returnByte(exec.Command("curl", "-s", u, "-o", web))
+	grep := returnByte(exec.Command("grep", g, web))
+	errors(os.WriteFile(grp, grep, 0666))
+	head := returnByte(exec.Command("head", "-n 1", grp))
 	return regmatch(strings.TrimSpace(string(head)))
 }
 

@@ -20,7 +20,7 @@ func Plugin() {
 		body := freebies(ups) + assemble()
 		if len(body) > 0 {
 			err := os.WriteFile("updates/updates.txt", []byte(body), 0666)
-			trouble(err)
+			errors(err)
 			mailman(body)
 		} else {
 			Logging("No updates found")
@@ -31,7 +31,8 @@ func Plugin() {
 	}
 }
 
-// Theme triggers the related functions --todo
+// TODO: Ability to update themes
+// Theme triggers the related functions
 func Theme() {
 	Logging("Themes update triggered on " + site)
 	ups := wpcli("theme", "list", "--update=available")
@@ -39,6 +40,7 @@ func Theme() {
 	fmt.Print(body)
 }
 
+// TODO: Ability to update core components
 // Core triggers the related functions --todo
 func Core() {
 	Logging("Core update triggered on " + site)
@@ -50,7 +52,7 @@ func Core() {
 // Logging records a message to the log file
 func Logging(message string) {
 	file, err := os.OpenFile("logs/wpp.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-	trouble(err)
+	errors(err)
 	log.SetOutput(file)
 	log.Println(message)
 }

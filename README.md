@@ -22,7 +22,7 @@ Googles' [Go language](https://go.dev) installed to enable building executables 
 
 From the root folder containing *main.go*, use the command that matches your environment:
 
-### Mac:
+### Windows & Mac:
 
 ```bash
 go build -o <build_location>/<program_name> main.go

@@ -25,14 +25,14 @@ func contains() bool {
 }
 
 // Execute terminal commands and return a byte variable
-func rtnByte(cmd *exec.Cmd) []byte {
+func returnByte(cmd *exec.Cmd) []byte {
 	output, err := cmd.Output()
-	trouble(err)
+	errors(err)
 	return output
 }
 
 // Check for errors, halt the program if found, and log the result
-func trouble(err error) {
+func errors(err error) {
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -42,16 +42,16 @@ func trouble(err error) {
 func mailman(list string) {
 	cmd := exec.Command("mail", "-s", "WordPress updates for "+site, "-r", "Delivery Cactuar <"+sender+">", recipient)
 	stdin, err := cmd.StdinPipe()
-	trouble(err)
+	errors(err)
 
 	go func() {
 		defer stdin.Close()
 		_, err := io.WriteString(stdin, "Below is the current list of plugins requiring updates for "+site+". Have a magical day!\n\n"+list)
-		trouble(err)
+		errors(err)
 	}()
 
 	out, err := cmd.CombinedOutput()
-	trouble(err)
+	errors(err)
 
 	Logging("Email sent" + string(out))
 }
@@ -60,19 +60,19 @@ func mailman(list string) {
 func concat(method, flag, task, pipe string) []byte {
 	cmd := exec.Command(method, flag, task)
 	stdin, err := cmd.StdinPipe()
-	trouble(err)
+	errors(err)
 
 	go func() {
 		defer stdin.Close()
 		_, err := io.WriteString(stdin, pipe)
-		trouble(err)
+		errors(err)
 	}()
 
 	out, err := cmd.CombinedOutput()
-	trouble(err)
+	errors(err)
 	return out
 }
 
 func cleanup(cut string) {
-	trouble(os.Remove(cut))
+	errors(os.Remove(cut))
 }

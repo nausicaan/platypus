@@ -37,7 +37,7 @@ GOOS=linux GOARCH=amd64 go build -o <build_location>/<program_name> main.go
 ## Run
 
 ```bash
-./<program_name> <server_name>.dmz <WordPress_path> <site_name>
+./<program_name> <target server> <wordpress path> <wordpress url>
 ```
 
 Example:

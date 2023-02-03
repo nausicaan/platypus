@@ -13,11 +13,13 @@ var grp = "temp/grepped.txt"
 
 // Run the functions to gather premium plugin versions currently installed and available
 func assemble() string {
+	var exportInstalled = current("bcgov-plugin/wp-all-export-pro")
 	var ticketsInstalled = current("bcgov-plugin/event-tickets-plus")
 	var polylangInstalled = current("bcgov-plugin/polylang-pro")
+	var exportAvailable = latest("https://www.wpallimport.com/downloads/wp-all-export-pro/?changelog=1", "h4")
 	var ticketsAvailable = latest("https://theeventscalendar.com/category/release-notes/", "Event Tickets Plus")
 	var polylangAvailable = latest("https://polylang.pro/downloads/polylang-pro/", "vendd-detail-info")
-	collect := results(ticketsAvailable, ticketsInstalled, "event-tickets-plus") + results(polylangAvailable, polylangInstalled, "polylang-pro")
+	collect := results(ticketsAvailable, ticketsInstalled, "event-tickets-plus") + results(polylangAvailable, polylangInstalled, "polylang-pro") + results(exportAvailable, exportInstalled, "wp-all-export-pro")
 	return collect
 }
 

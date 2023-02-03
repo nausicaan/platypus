@@ -31,18 +31,16 @@ func Plugin() {
 	}
 }
 
-// TODO: Ability to update themes
 // Theme triggers the related functions
-func Theme() {
+func Theme() { /* TODO: Ability to update themes */
 	Logging("Themes update triggered on " + site)
 	ups := wpcli("theme", "list", "--update=available")
 	body := freebies(ups) + assemble()
 	fmt.Print(body)
 }
 
-// TODO: Ability to update core components
 // Core triggers the related functions --todo
-func Core() {
+func Core() { /* TODO: Ability to update core components */
 	Logging("Core update triggered on " + site)
 	ups := wpcli("wp", "core", "check-update")
 	body := freebies(ups)

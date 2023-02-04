@@ -1,4 +1,4 @@
-# WordPress Checker
+# WordPress Update Check
 
 Runs the standard `wp plugin list --update=available` command as well as some custom searches to grab those hard to find plugin updates.
 
@@ -43,7 +43,7 @@ GOOS=linux GOARCH=amd64 go build -o <build_location>/<program_name> main.go
 Example:
 
 ```bash
-./wp-checker coeurl.dmz /data/www-app/test_blog_gov_bc_ca/current/web/wp test.blog.gov.bc.ca
+./upcheck coeurl.dmz /data/www-app/test_blog_gov_bc_ca/current/web/wp test.blog.gov.bc.ca
 ```
 
 ## License

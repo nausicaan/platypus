@@ -1,4 +1,4 @@
-# WordPress Update Check
+# Platypus: A WordPress Plugin Update Checker
 
 Runs the standard `wp plugin list --update=available` command as well as some custom searches to grab those hard to find plugin updates.
 
@@ -24,26 +24,26 @@ From the root folder containing *main.go*, use the command that matches your env
 
 ### Windows & Mac:
 
-```bash
-go build -o <build_location>/<program_name> main.go
+```console
+go build -o [name] main.go
 ```
 
 ### Linux:
 
-```bash
-GOOS=linux GOARCH=amd64 go build -o <build_location>/<program_name> main.go
+```console
+GOOS=linux GOARCH=amd64 go build -o [name] main.go
 ```
 
 ## Run
 
-```bash
-./<program_name> <target server> <wordpress path> <wordpress url>
+```console
+./[program] [target server] [wordpress path] [wordpress url]
 ```
 
 Example:
 
 ```bash
-./upcheck coeurl.dmz /data/www-app/test_blog_gov_bc_ca/current/web/wp test.blog.gov.bc.ca
+./platypus coeurl.dmz /data/www-app/test_blog_gov_bc_ca/current/web/wp test.blog.gov.bc.ca
 ```
 
 ## License

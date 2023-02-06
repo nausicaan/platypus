@@ -1,7 +1,7 @@
 package main
 
 import (
-	w "github.com/nausicaan/wp-checker/workers"
+	w "github.com/nausicaan/platypus/workers"
 )
 
 var BuildVersion = "1.0.0"

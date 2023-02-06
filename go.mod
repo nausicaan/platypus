@@ -1,3 +1,3 @@
-module github.com/nausicaan/wp-checker
+module github.com/nausicaan/platypus
 
 go 1.19

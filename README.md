@@ -1,6 +1,6 @@
-# Platypus: A WordPress plugin update search tool
+# Platypus
 
-Runs the standard `wp plugin list --update=available` command as well as some custom searches to grab those hard to find plugin updates.
+Platypus is a WordPress plugin update search tool. It runs the standard `wp plugin list --update=available` command as well as some custom searches to grab those hard to find plugin updates.
 
 ```console
 Below is the current list of plugins requiring updates for test.blog.gov.bc.ca.

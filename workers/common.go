@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	sender, recipient = "interuser@cactuar.dmz", "byron.stuike@gov.bc.ca,jeff.stewart@gov.bc.ca,david.kelsey@gov.bc.ca"
+	sender, recipient string = "interuser@cactuar.dmz", "byron.stuike@gov.bc.ca,jeff.stewart@gov.bc.ca,david.kelsey@gov.bc.ca"
 )
 
 // Allow only a predefined set of servers

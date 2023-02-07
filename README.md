@@ -37,13 +37,13 @@ GOOS=linux GOARCH=amd64 go build -o [name] main.go
 ## Run
 
 ```console
-./[program] [target server] [wordpress path] [wordpress url]
+./[program] [flag] [target server] [wordpress path] [wordpress url]
 ```
 
 Example:
 
 ```console
-./platypus coeurl.dmz /data/www-app/test_blog_gov_bc_ca/current/web/wp test.blog.gov.bc.ca
+./platypus -p coeurl.dmz /data/www-app/test_blog_gov_bc_ca/current/web/wp test.blog.gov.bc.ca
 ```
 
 ## License

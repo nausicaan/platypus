@@ -10,10 +10,10 @@ import (
 const (
 	bv     string = "1.0.0"
 	reset  string = "\033[0m"
-	red    string = "\033[31m"
+	red    string = "\033[41m"
 	green  string = "\033[32m"
 	yellow string = "\033[33m"
-	halt   string = red + "program halted"
+	halt   string = "program halted "
 	zero   string = "Insufficient arguments supplied - " + halt
 )
 
@@ -39,11 +39,11 @@ func main() {
 	case "-c", "--core":
 		w.Core()
 	case "--zero":
-		fmt.Println("No flag detected -", halt)
-		fmt.Println()
+		fmt.Println(red, "No flag detected -", halt)
+		fmt.Println(reset)
 	default:
-		fmt.Println("Incorrect flag detected -", halt)
-		fmt.Println()
+		fmt.Println(red, "Bad flag detected -", halt)
+		fmt.Println(reset)
 	}
 }
 
@@ -59,9 +59,9 @@ func helpMenu() {
 	fmt.Println(green, " -h, --help", reset, "	 Help Information")
 	fmt.Println(yellow, "\nExample:", reset)
 	fmt.Println("  In your WordPress installation folder, run:")
-	fmt.Println(green, "\n    ./platypus coeurl.dmz /data/www-app/test_blog_gov_bc_ca/current/web/wp test.blog.gov.bc.ca")
+	fmt.Println(green, "\n    ./platypus -p coeurl.dmz /data/www-app/test_blog_gov_bc_ca/current/web/wp test.blog.gov.bc.ca")
 	fmt.Println(yellow, "\nHelp:", reset)
 	fmt.Println("  For more information go to:")
 	fmt.Println(green, "\n    https://github.com/nausicaan/platypus.git")
-	fmt.Println()
+	fmt.Println(reset)
 }

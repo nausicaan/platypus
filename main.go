@@ -31,7 +31,7 @@ func main() {
 	case "-v", "--version":
 		fmt.Println(yellow+"Platypus", green+bv)
 	case "-h", "--help":
-		helpMenu()
+		help()
 	case "-p", "--plugin":
 		w.Plugin()
 	case "-t", "--theme":
@@ -48,7 +48,7 @@ func main() {
 }
 
 // Print the help information
-func helpMenu() {
+func help() {
 	fmt.Println(yellow, "\nUsage:", reset)
 	fmt.Println("  ./[program] [flag] [target server] [wordpress path] [wordpress url]")
 	fmt.Println(yellow, "\nOptions:")

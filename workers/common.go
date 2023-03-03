@@ -7,13 +7,6 @@ import (
 	"os/exec"
 )
 
-const (
-	sender, recipient string = "interuser@cactuar.dmz", "byron.stuike@gov.bc.ca,jeff.stewart@gov.bc.ca,david.kelsey@gov.bc.ca"
-)
-
-// Allow only a predefined set of servers
-var servers = []string{"cactuar.dmz", "coeurl.dmz", "chimera.dmz", "moogle.dmz", "moblin.dmz", "mimic.dmz"}
-
 // Test if the server value passed to the program is on the list
 func contains() bool {
 	for _, v := range servers {
@@ -24,15 +17,25 @@ func contains() bool {
 	return false
 }
 
-// Execute terminal commands and return a byte variable
-func returnByte(cmd *exec.Cmd) []byte {
-	output, err := cmd.Output()
-	errors(err)
-	return output
+// Run a terminal command, then capture and return the output as a byte
+func byteout(name string, task ...string) []byte {
+	path, err := exec.LookPath(name)
+	problem(err)
+	osCmd, _ := exec.Command(path, task...).Output()
+	return osCmd
 }
 
+/*
+// Execute terminal commands and return a byte variable
+func byteout(cmd *exec.Cmd) []byte {
+	output, err := cmd.Output()
+	problem(err)
+	return output
+}
+*/
+
 // Check for errors, halt the program if found, and log the result
-func errors(err error) {
+func problem(err error) {
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -42,37 +45,37 @@ func errors(err error) {
 func mailman(list string) {
 	cmd := exec.Command("mail", "-s", "WordPress updates for "+site, "-r", "Delivery Cactuar <"+sender+">", recipient)
 	stdin, err := cmd.StdinPipe()
-	errors(err)
+	problem(err)
 
 	go func() {
 		defer stdin.Close()
 		_, err := io.WriteString(stdin, "Below is the current list of plugins requiring updates for "+site+". Have a magical day!\n\n"+list)
-		errors(err)
+		problem(err)
 	}()
 
 	out, err := cmd.CombinedOutput()
-	errors(err)
+	problem(err)
 
-	Logging("Email sent" + string(out))
+	journal("Email sent" + string(out))
 }
 
 // Pipe together commands using the exec.Command function
 func concat(method, flag, task, pipe string) []byte {
 	cmd := exec.Command(method, flag, task)
 	stdin, err := cmd.StdinPipe()
-	errors(err)
+	problem(err)
 
 	go func() {
 		defer stdin.Close()
 		_, err := io.WriteString(stdin, pipe)
-		errors(err)
+		problem(err)
 	}()
 
 	out, err := cmd.CombinedOutput()
-	errors(err)
+	problem(err)
 	return out
 }
 
 func cleanup(cut string) {
-	errors(os.Remove(cut))
+	problem(os.Remove(cut))
 }

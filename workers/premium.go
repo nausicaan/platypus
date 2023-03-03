@@ -2,7 +2,6 @@ package workers
 
 import (
 	"os"
-	"os/exec"
 	"regexp"
 	"strings"
 )
@@ -37,17 +36,17 @@ func current(p string) string {
 	where := strings.TrimSuffix(path, "web/wp") + "composer.json"
 	who := user + "@" + server
 	what := concat("ssh", "-T", who, " cat "+where)
-	errors(os.WriteFile(tmp, what, 0666))
-	grep := returnByte(exec.Command("grep", p, tmp))
+	problem(os.WriteFile(tmp, what, 0666))
+	grep := byteout("grep", p, tmp)
 	return regmatch(strings.TrimSpace(string(grep)))
 }
 
 // Find the latest versions of our premium plugins from the applicable websites
 func latest(u, g string) string {
-	returnByte(exec.Command("curl", "-s", u, "-o", web))
-	grep := returnByte(exec.Command("grep", g, web))
-	errors(os.WriteFile(grp, grep, 0666))
-	head := returnByte(exec.Command("head", "-n 1", grp))
+	byteout("curl", "-s", u, "-o", web)
+	grep := byteout("grep", g, web)
+	problem(os.WriteFile(grp, grep, 0666))
+	head := byteout("head", "-n 1", grp)
 	return regmatch(strings.TrimSpace(string(head)))
 }
 

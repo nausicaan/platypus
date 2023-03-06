@@ -3,7 +3,7 @@
 Platypus is a WordPress plugin update search tool. It runs the standard `wp plugin list --update=available` command as well as some custom searches to grab those hard to find plugin updates.
 
 ```console
-Below is the current list of plugins requiring updates for test.blog.gov.bc.ca.
+Below is the current list of plugins requiring updates for test.blog.ca.
 
 wpackagist-plugin/gutenberg:14.8.2
 wpackagist-plugin/stackable-ultimate-gutenberg-blocks:3.6.3
@@ -16,7 +16,16 @@ bcgov-plugin/gravityforms:2.6.8.2
 
 ## Prerequisite
 
-Googles' [Go language](https://go.dev) installed to enable building executables from source code.
+1. Googles' [Go language](https://go.dev) installed to enable building executables from source code.
+
+2. The values for sender, recipient and user need to be set as per your environment.
+
+```go
+var (
+	server, site string
+	sender, recipient, user string = "", "", ""
+)
+```
 
 ## Build
 
@@ -43,7 +52,7 @@ GOOS=linux GOARCH=amd64 go build -o [name] main.go
 Example:
 
 ```console
-./platypus -p coeurl.dmz /data/www-app/test_blog_gov_bc_ca/current/web/wp test.blog.gov.bc.ca
+./platypus -p server.dmz /data/www-app/test_blog/current/web/wp test.blog.ca
 ```
 
 ## License

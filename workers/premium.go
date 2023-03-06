@@ -33,7 +33,7 @@ func results(update, current, plugin string) string {
 
 // Find the current versions of our premium plugins from the composer.json file
 func current(p string) string {
-	where := strings.TrimSuffix(path, "web/wp") + "composer.json"
+	where := strings.TrimSuffix(os.Args[3], "web/wp") + "composer.json"
 	who := user + "@" + server
 	what := concat("ssh", "-T", who, " cat "+where)
 	problem(os.WriteFile(tmp, what, 0666))

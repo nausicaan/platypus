@@ -1,12 +1,13 @@
 package workers
 
 import (
+	"os"
 	"strings"
 )
 
 // Run the wp update check command
 func wpcli(x, y, z string) []string {
-	c := byteout("wp", x, y, z, "--fields=name,version,update_version", "--format=csv", "--ssh="+user+"@"+server+":"+path, "--url="+site)
+	c := byteout("wp", x, y, z, "--fields=name,version,update_version", "--format=csv", "--ssh="+user+"@"+server+":"+os.Args[3], "--url="+site)
 	f := strings.ReplaceAll(string(c), "\n", ",")
 	r := strings.Split(f, ",")
 	return r

@@ -7,8 +7,14 @@ import (
 	"os/exec"
 )
 
+var (
+	server, site            string
+	sender, recipient, user string = "", "", ""
+)
+
 // Test if the server value passed to the program is on the list
 func contains() bool {
+	server = os.Args[2]
 	for _, v := range servers {
 		if v == server {
 			return true
@@ -19,20 +25,11 @@ func contains() bool {
 
 // Run a terminal command, then capture and return the output as a byte
 func byteout(name string, task ...string) []byte {
-	path, err := exec.LookPath(name)
+	lpath, err := exec.LookPath(name)
 	problem(err)
-	osCmd, _ := exec.Command(path, task...).CombinedOutput()
+	osCmd, _ := exec.Command(lpath, task...).CombinedOutput()
 	return osCmd
 }
-
-/*
-// Execute terminal commands and return a byte variable
-func byteout(cmd *exec.Cmd) []byte {
-	output, err := cmd.Output()
-	problem(err)
-	return output
-}
-*/
 
 // Check for errors, halt the program if found, and log the result
 func problem(err error) {

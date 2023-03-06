@@ -9,6 +9,7 @@ var short = []string{tmp, grp, web}
 
 // Plugin triggers the related functions
 func Plugin() {
+	site = os.Args[4]
 	if contains() {
 		journal("Plugin update triggered on " + site)
 		ups := wpcli("plugin", "list", "--update=available")

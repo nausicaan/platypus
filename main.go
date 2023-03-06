@@ -19,13 +19,7 @@ const (
 
 // Launch the program and execute according to the supplied flag
 func main() {
-	var flag string
-
-	if len(os.Args) == 1 {
-		flag = "--zero"
-	} else {
-		flag = os.Args[1]
-	}
+	var flag string = flags()
 
 	switch flag {
 	case "-v", "--version":
@@ -33,17 +27,19 @@ func main() {
 	case "-h", "--help":
 		help()
 	case "-p", "--plugin":
-		w.Plugin()
+		if length() {
+			w.Plugin()
+		}
 	case "-t", "--theme":
 		w.Theme()
 	case "-c", "--core":
 		w.Core()
 	case "--zero":
-		fmt.Println(red, "No flag detected -", halt)
-		fmt.Println(reset)
+		fmt.Println(red, "No flag detected -", halt, reset)
+		help()
 	default:
-		fmt.Println(red, "Bad flag detected -", halt)
-		fmt.Println(reset)
+		fmt.Println(red, "Bad flag detected -", halt, reset)
+		help()
 	}
 }
 
@@ -59,9 +55,36 @@ func help() {
 	fmt.Println(green, " -h, --help", reset, "	 Help Information")
 	fmt.Println(yellow, "\nExample:", reset)
 	fmt.Println("  In your WordPress installation folder, run:")
-	fmt.Println(green, "\n    ./platypus -p coeurl.dmz /data/www-app/test_blog_gov_bc_ca/current/web/wp test.blog.gov.bc.ca")
+	fmt.Println(green, "\n    ./platypus -p server.dmz /data/www-app/test_blog/current/web/wp test.blog.ca")
 	fmt.Println(yellow, "\nHelp:", reset)
 	fmt.Println("  For more information go to:")
 	fmt.Println(green, "\n    https://github.com/nausicaan/platypus.git")
 	fmt.Println(reset)
+}
+
+// Test for a proper flag
+func flags() string {
+	var flag string
+
+	if len(os.Args) == 1 {
+		flag = "--zero"
+	} else {
+		flag = os.Args[1]
+	}
+	return flag
+}
+
+// Test for the correct amount of arguments
+func length() bool {
+	passed := false
+	if len(os.Args) < 5 {
+		fmt.Println(red, zero, reset)
+		help()
+	} else if len(os.Args) > 5 {
+		fmt.Println(red, "Too many arguments supplied -", halt, reset)
+		help()
+	} else {
+		passed = true
+	}
+	return passed
 }

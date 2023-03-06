@@ -5,11 +5,10 @@ import (
 	"os"
 )
 
-var short = []string{tmp, grp, web}
-
 // Plugin triggers the related functions
 func Plugin() {
 	site = os.Args[4]
+	short := []string{tmp, grp, web}
 	if contains() {
 		journal("Plugin update triggered on " + site)
 		ups := wpcli("plugin", "list", "--update=available")
@@ -30,13 +29,13 @@ func Plugin() {
 // Theme triggers the related functions
 func Theme() {
 	journal("Theme update triggered on " + site)
-	/* TODO: Ability to update themes */
+	/* TODO: Update themes */
 }
 
 // Core triggers the related functions
 func Core() {
 	journal("Core update triggered on " + site)
-	/* TODO: Ability to update core components */
+	/* TODO: Update core components */
 }
 
 // Record a message to the log file

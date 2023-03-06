@@ -18,13 +18,28 @@ bcgov-plugin/gravityforms:2.6.8.2
 
 1. Googles' [Go language](https://go.dev) installed to enable building executables from source code.
 
-2. The values for sender, recipient and user need to be set as per your environment.
+2. The values for *sender, recipient and user* need to be set as per your environment.
 
 ```go
-var (
-	server, site string
+const (
 	sender, recipient, user string = "", "", ""
 )
+```
+
+3. As well as populating the *servers* array 
+
+```go
+// Test if the server value passed to the program is on the list
+func contains() bool {
+	server = os.Args[2]
+	servers := []string{ /* add a list of servers here to test against */ }
+	for _, v := range servers {
+		if v == server {
+			return true
+		}
+	}
+	return false
+}
 ```
 
 ## Build

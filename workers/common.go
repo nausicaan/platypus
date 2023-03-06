@@ -7,14 +7,18 @@ import (
 	"os/exec"
 )
 
-var (
-	server, site            string
+const (
 	sender, recipient, user string = "", "", ""
+)
+
+var (
+	server, site string
 )
 
 // Test if the server value passed to the program is on the list
 func contains() bool {
 	server = os.Args[2]
+	servers := []string{ /* add a list of servers here to test against */ }
 	for _, v := range servers {
 		if v == server {
 			return true

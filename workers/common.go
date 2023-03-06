@@ -21,7 +21,7 @@ func contains() bool {
 func byteout(name string, task ...string) []byte {
 	path, err := exec.LookPath(name)
 	problem(err)
-	osCmd, _ := exec.Command(path, task...).Output()
+	osCmd, _ := exec.Command(path, task...).CombinedOutput()
 	return osCmd
 }
 
@@ -53,8 +53,7 @@ func mailman(list string) {
 		problem(err)
 	}()
 
-	out, err := cmd.CombinedOutput()
-	problem(err)
+	out, _ := cmd.CombinedOutput()
 
 	journal("Email sent" + string(out))
 }
@@ -71,8 +70,7 @@ func concat(method, flag, task, pipe string) []byte {
 		problem(err)
 	}()
 
-	out, err := cmd.CombinedOutput()
-	problem(err)
+	out, _ := cmd.CombinedOutput()
 	return out
 }
 

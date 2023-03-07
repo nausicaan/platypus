@@ -18,15 +18,26 @@ bcgov-plugin/gravityforms:2.6.8.2
 
 1. Googles' [Go language](https://go.dev) installed to enable building executables from source code.
 
-2. The values for *sender, recipient and user* need to be set as per your environment.
+2. Values for *sender* and *recipient* need to be set as per your environment:
 
 ```go
 const (
-	sender, recipient, user string = "", "", ""
+	sender, recipient string = "", ""
 )
 ```
 
-3. As well as populating the *servers* array 
+3. Edit the user authorized to run wp commands:
+
+```go
+
+var (
+	server, site string
+	// user authorized to run wp commands
+	who = "deploy@" + os.Args[2]
+)
+```
+
+4. And populate the *servers* array:
 
 ```go
 // Test if the server value passed to the program is on the list

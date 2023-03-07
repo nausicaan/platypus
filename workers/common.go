@@ -8,11 +8,13 @@ import (
 )
 
 const (
-	sender, recipient, user string = "", "", ""
+	sender, recipient string = "", ""
 )
 
 var (
 	server, site string
+	// user authorized to run wp commands
+	who = "deploy@" + os.Args[2]
 )
 
 // Test if the server value passed to the program is on the list

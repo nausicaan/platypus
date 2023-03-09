@@ -13,7 +13,7 @@ const (
 
 var (
 	server, site string
-	// user authorized to run wp commands
+	// User authorized to run wp commands
 	who = "deploy@" + os.Args[2]
 )
 
@@ -30,15 +30,15 @@ func contains() bool {
 }
 
 // Run a terminal command, then capture and return the output as a byte
-func byteout(name string, task ...string) []byte {
+func byteme(name string, task ...string) []byte {
 	lpath, err := exec.LookPath(name)
-	problem(err)
+	problems(err)
 	osCmd, _ := exec.Command(lpath, task...).CombinedOutput()
 	return osCmd
 }
 
 // Check for errors, halt the program if found, and log the result
-func problem(err error) {
+func problems(err error) {
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -48,12 +48,12 @@ func problem(err error) {
 func mailman(list string) {
 	cmd := exec.Command("mail", "-s", "WordPress updates for "+site, "-r", "Delivery Cactuar <"+sender+">", recipient)
 	stdin, err := cmd.StdinPipe()
-	problem(err)
+	problems(err)
 
 	go func() {
 		defer stdin.Close()
 		_, err := io.WriteString(stdin, "Below is the current list of plugins requiring updates for "+site+". Have a magical day!\n\n"+list)
-		problem(err)
+		problems(err)
 	}()
 
 	out, _ := cmd.CombinedOutput()
@@ -65,12 +65,12 @@ func mailman(list string) {
 func concat(method, flag, task, pipe string) []byte {
 	cmd := exec.Command(method, flag, task)
 	stdin, err := cmd.StdinPipe()
-	problem(err)
+	problems(err)
 
 	go func() {
 		defer stdin.Close()
 		_, err := io.WriteString(stdin, pipe)
-		problem(err)
+		problems(err)
 	}()
 
 	out, _ := cmd.CombinedOutput()
@@ -78,5 +78,5 @@ func concat(method, flag, task, pipe string) []byte {
 }
 
 func cleanup(cut string) {
-	problem(os.Remove(cut))
+	problems(os.Remove(cut))
 }

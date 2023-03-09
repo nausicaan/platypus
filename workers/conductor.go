@@ -15,7 +15,7 @@ func Plugin() {
 		body := freebies(ups) + assemble()
 		if len(body) > 0 {
 			err := os.WriteFile("updates/updates.txt", []byte(body), 0666)
-			problem(err)
+			problems(err)
 			mailman(body)
 		} else {
 			journal("No updates found")
@@ -41,7 +41,7 @@ func Core() {
 // Record a message to the log file
 func journal(message string) {
 	file, err := os.OpenFile("logs/platypus.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-	problem(err)
+	problems(err)
 	log.SetOutput(file)
 	log.Println(message)
 }

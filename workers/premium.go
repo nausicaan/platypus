@@ -6,9 +6,9 @@ import (
 	"strings"
 )
 
-var web = "temp/webscrape.txt"
-var tmp = "temp/temp.json"
-var grp = "temp/grepped.txt"
+const (
+	web, tmp, grp string = "temp/webscrape.txt", "temp/temp.json", "temp/grepped.txt"
+)
 
 // Run the functions to gather premium plugin versions currently installed and available
 func assemble() string {

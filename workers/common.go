@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	sender, recipient string = "", ""
+	sender, recipient string = "", "" // Set values as per your environment
 )
 
 var (
@@ -77,6 +77,7 @@ func concat(method, flag, task, pipe string) []byte {
 	return out
 }
 
+// Remove files or directories
 func cleanup(cut string) {
 	problems(os.Remove(cut))
 }

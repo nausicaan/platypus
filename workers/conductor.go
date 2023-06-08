@@ -7,7 +7,6 @@ import (
 
 // Plugin triggers the related functions
 func Plugin() {
-	site = os.Args[4]
 	short := []string{tmp, grp, web}
 	if contains() {
 		journal("Plugin update triggered on " + site)

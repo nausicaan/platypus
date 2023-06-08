@@ -9,48 +9,24 @@ wpackagist-plugin/gutenberg:14.8.2
 wpackagist-plugin/stackable-ultimate-gutenberg-blocks:3.6.3
 wpackagist-plugin/styles-and-layouts-for-gravity-forms:4.3.10
 wpackagist-plugin/tablepress:2.0.1
-bcgov-plugin/events-calendar-pro:6.0.5.1
-bcgov-plugin/event-tickets-plus:5.6.4
-bcgov-plugin/gravityforms:2.6.8.2
 ```
 
 ## Prerequisite
 
-1. Googles' [Go language](https://go.dev) installed to enable building executables from source code.
+- Googles' [Go language](https://go.dev) installed to enable building executables from source code.
 
-2. Values for *sender* and *recipient* need to be set as per your environment:
+- Creation of a variables file with the following values as per your environment:
 
 ```go
 const (
-	sender, recipient string = "", ""
+server, path, site string = /* [target server], [wordpress path], [wordpress url] */
+sender, recipient, user string = /* [mail sender], [mail recipient], [authorized user] */
 )
-```
 
-3. Edit the user authorized to run wp commands:
-
-```go
-
+// Allow only a predefined set of servers
 var (
-	server, site string
-	// user authorized to run wp commands
-	who = "deploy@" + os.Args[2]
+servers = []string{/* list of servers to test against */}
 )
-```
-
-4. And populate the *servers* array:
-
-```go
-// Test if the server value passed to the program is on the list
-func contains() bool {
-	server = os.Args[2]
-	servers := []string{ /* add a list of servers here to test against */ }
-	for _, v := range servers {
-		if v == server {
-			return true
-		}
-	}
-	return false
-}
 ```
 
 ## Build
@@ -72,13 +48,13 @@ GOOS=linux GOARCH=amd64 go build -o [name] main.go
 ## Run
 
 ```console
-./[program] [flag] [target server] [wordpress path] [wordpress url]
+./[program] [flag] //currently the only working flag is -p
 ```
 
 Example:
 
 ```console
-./platypus -p server.dmz /data/www-app/test_blog/current/web/wp test.blog.ca
+./platypus -p
 ```
 
 ## License

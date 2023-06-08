@@ -7,20 +7,8 @@ import (
 	"os/exec"
 )
 
-const (
-	sender, recipient string = "", "" // Set values as per your environment
-)
-
-var (
-	server, site string
-	// User authorized to run wp commands
-	who = "deploy@" + os.Args[2]
-)
-
 // Test if the server value passed to the program is on the list
 func contains() bool {
-	server = os.Args[2]
-	servers := []string{ /* add a list of servers here to test against */ }
 	for _, v := range servers {
 		if v == server {
 			return true

@@ -48,8 +48,10 @@ GOOS=linux GOARCH=amd64 go build -o [name] main.go
 ## Run
 
 ```console
-./[program] [flag] //currently the only working flag is -p
+./[program] [flag]
 ```
+
+Currently the only working flags are **-p**, **-h**, and **-v**
 
 Example:
 

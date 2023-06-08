@@ -14,7 +14,7 @@ const (
 	green  string = "\033[32m"
 	yellow string = "\033[33m"
 	halt   string = "program halted "
-	zero   string = "Insufficient arguments supplied - " + halt
+	zero          = "Insufficient arguments supplied - " + halt
 )
 
 // Launch the program and execute according to the supplied flag
@@ -46,7 +46,7 @@ func main() {
 // Print the help information
 func help() {
 	fmt.Println(yellow, "\nUsage:", reset)
-	fmt.Println("  ./[program] [flag] [target server] [wordpress path] [wordpress url]")
+	fmt.Println("  ./[program] [flag]")
 	fmt.Println(yellow, "\nOptions:")
 	fmt.Println(green, " -p, --plugin", reset, " Search for Plugin Updates")
 	fmt.Println(green, " -t, --theme", reset, "	 Search for Theme Updates")
@@ -55,7 +55,7 @@ func help() {
 	fmt.Println(green, " -h, --help", reset, "	 Help Information")
 	fmt.Println(yellow, "\nExample:", reset)
 	fmt.Println("  In your WordPress installation folder, run:")
-	fmt.Println(green, "\n    ./platypus -p server.dmz /data/www-app/test_blog/current/web/wp test.blog.ca")
+	fmt.Println(green, "\n    ./platypus -p")
 	fmt.Println(yellow, "\nHelp:", reset)
 	fmt.Println("  For more information go to:")
 	fmt.Println(green, "\n    https://github.com/nausicaan/platypus.git")

@@ -2,7 +2,7 @@
 
 Platypus is a WordPress plugin update search tool. It runs the standard `wp plugin list --update=available` command as well as some custom searches to grab those hard to find plugin updates.
 
-![Platypus](platypus.jpg)
+![Platypus](platypus.png)
 
 *Image by [brgfx](https://www.freepik.com/author/brgfx) on [Freepik](https://www.freepik.com)*
 

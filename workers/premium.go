@@ -35,17 +35,17 @@ func results(update, current, plugin string) string {
 func current(p string) string {
 	where := strings.TrimSuffix(path, "web/wp") + "composer.json"
 	what := concat("ssh", "-T", user, " cat "+where)
-	problems(os.WriteFile(tmp, what, 0666))
-	grep := byteme("grep", p, tmp)
+	inspect(os.WriteFile(tmp, what, 0666))
+	grep := capture("grep", p, tmp)
 	return regmatch(strings.TrimSpace(string(grep)))
 }
 
 // Find the latest versions of our premium plugins from the applicable websites
 func latest(u, g string) string {
-	byteme("curl", "-s", u, "-o", web)
-	grep := byteme("grep", g, web)
-	problems(os.WriteFile(grp, grep, 0666))
-	head := byteme("head", "-n 1", grp)
+	capture("curl", "-s", u, "-o", web)
+	grep := capture("grep", g, web)
+	inspect(os.WriteFile(grp, grep, 0666))
+	head := capture("head", "-n 1", grp)
 	return regmatch(strings.TrimSpace(string(head)))
 }
 

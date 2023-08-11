@@ -6,7 +6,7 @@ import (
 
 // Run the wp update check command
 func wpcli(x, y, z string) []string {
-	c := byteme("wp", x, y, z, "--fields=name,version,update_version", "--format=csv", "--ssh="+user+":"+path, "--url="+site)
+	c := capture("wp", x, y, z, "--fields=name,version,update_version", "--format=csv", "--ssh="+user+":"+path, "--url="+site)
 	f := strings.ReplaceAll(string(c), "\n", ",")
 	r := strings.Split(f, ",")
 	return r

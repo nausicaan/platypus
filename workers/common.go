@@ -18,15 +18,13 @@ func contains() bool {
 }
 
 // Run a terminal command, then capture and return the output as a byte
-func byteme(name string, task ...string) []byte {
-	lpath, err := exec.LookPath(name)
-	problems(err)
-	osCmd, _ := exec.Command(lpath, task...).CombinedOutput()
+func capture(task string, args ...string) []byte {
+	osCmd, _ := exec.Command(task, args...).CombinedOutput()
 	return osCmd
 }
 
 // Check for errors, halt the program if found, and log the result
-func problems(err error) {
+func inspect(err error) {
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -36,12 +34,12 @@ func problems(err error) {
 func mailman(list string) {
 	cmd := exec.Command("mail", "-s", "WordPress updates for "+site, "-r", "Delivery Cactuar <"+sender+">", recipient)
 	stdin, err := cmd.StdinPipe()
-	problems(err)
+	inspect(err)
 
 	go func() {
 		defer stdin.Close()
 		_, err := io.WriteString(stdin, "Below is the current list of plugins requiring updates for "+site+". Have a magical day!\n\n"+list)
-		problems(err)
+		inspect(err)
 	}()
 
 	out, _ := cmd.CombinedOutput()
@@ -53,12 +51,12 @@ func mailman(list string) {
 func concat(method, flag, task, pipe string) []byte {
 	cmd := exec.Command(method, flag, task)
 	stdin, err := cmd.StdinPipe()
-	problems(err)
+	inspect(err)
 
 	go func() {
 		defer stdin.Close()
 		_, err := io.WriteString(stdin, pipe)
-		problems(err)
+		inspect(err)
 	}()
 
 	out, _ := cmd.CombinedOutput()
@@ -67,5 +65,5 @@ func concat(method, flag, task, pipe string) []byte {
 
 // Remove files or directories
 func cleanup(cut string) {
-	problems(os.Remove(cut))
+	inspect(os.Remove(cut))
 }

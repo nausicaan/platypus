@@ -19,7 +19,9 @@ func contains() bool {
 
 // Run a terminal command, then capture and return the output as a byte
 func capture(task string, args ...string) []byte {
-	osCmd, _ := exec.Command(task, args...).CombinedOutput()
+	lpath, err := exec.LookPath(task)
+	inspect(err)
+	osCmd, _ := exec.Command(lpath, args...).CombinedOutput()
 	return osCmd
 }
 

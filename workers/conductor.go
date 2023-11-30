@@ -9,7 +9,7 @@ import (
 func Plugin() {
 	short := []string{tmp, grp, web}
 	if contains() {
-		journal("Plugin update triggered on " + site)
+		journal("Plugin update search triggered on " + site)
 		ups := wpcli("plugin", "list", "--update=available")
 		body := freebies(ups) + assemble()
 		if len(body) > 0 {
@@ -27,13 +27,13 @@ func Plugin() {
 
 // Theme triggers the related functions
 func Theme() {
-	journal("Theme update triggered on " + site)
+	journal("Theme update search triggered on " + site)
 	/* TODO: Update themes */
 }
 
 // Core triggers the related functions
 func Core() {
-	journal("Core update triggered on " + site)
+	journal("Core update search triggered on " + site)
 	/* TODO: Update core components */
 }
 
